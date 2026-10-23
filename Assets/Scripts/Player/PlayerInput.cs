@@ -11,6 +11,10 @@ public class PlayerInput : MonoBehaviour
     {
         playerBehavior = GetComponent<PlayerBehavior>();
         playerSprite = GetComponent<PlayerSprite>();
+        
+    }
+    private void Start()
+    {
         playerSprite.GetPlayerTransform(playerTransform);
         playerSprite.SetPlayerVelocity(playerBehavior.GetRigidbody());
     }
