@@ -4,8 +4,8 @@ public class PlayerBehavior : MonoBehaviour
 {
     Rigidbody2D rbPlayer;
     bool isDead = false;
-    float jumpForce = 5f;
-    float speedPlayer = 10f;
+    float jumpForce = 3f;
+    float speedPlayer = 50f;
     void Awake()
     {
         rbPlayer = GetComponent<Rigidbody2D>();
@@ -17,6 +17,12 @@ public class PlayerBehavior : MonoBehaviour
     public Rigidbody2D GetRigidbody()
     {
         return rbPlayer;
+    }
+    public void SetDeath(bool deathCondition)
+    {
+        isDead = deathCondition;
+        rbPlayer.linearVelocity = Vector3.zero;
+        StopCoroutine(MoveLoop());
     }
     public void LaunchPlayer()
     {
