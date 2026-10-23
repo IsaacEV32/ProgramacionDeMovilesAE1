@@ -6,6 +6,7 @@ public class PlayerBehavior : MonoBehaviour
     bool isDead = false;
     float jumpForce = 3f;
     float speedPlayer = 50f;
+    [SerializeField] LayerMask interactableMask;
     void Awake()
     {
         rbPlayer = GetComponent<Rigidbody2D>();
@@ -13,6 +14,14 @@ public class PlayerBehavior : MonoBehaviour
     private void Start()
     {
         StartCoroutine(MoveLoop());
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if ((interactableMask.value & (1 << collision.gameObject.layer)) != 0)
+        {
+            collision.gameObject.GetComponent<IInteractablePoints>().Collect();
+            collision.gameObject.SetActive(false);
+        }
     }
     public Rigidbody2D GetRigidbody()
     {
