@@ -3092,6 +3092,7 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 64
+  playerPosition: {fileID: 285600987}
 --- !u!1001 &1842647961
 PrefabInstance:
   m_ObjectHideFlags: 0

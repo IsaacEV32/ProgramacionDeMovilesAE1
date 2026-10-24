@@ -22,23 +22,26 @@ public class GameManager : MonoBehaviour
         this.gameObject.AddComponent(typeof(SaveSystemAndroid));
         saveSystem = GetComponent<SaveSystem>();
         applicationVersionText.text = "Platform Version: " + Application.platform + " Version: " + Application.version;
+        Screen.orientation = ScreenOrientation.Portrait;
 #elif RELEASE_ANDROID
         this.gameObject.AddComponent(typeof(SaveSystemAndroid));
         saveSystem = GetComponent<SaveSystem>();
         Destroy(applicationVersionText.gameObject);
+        Screen.orientation = ScreenOrientation.Portrait;
 #elif DEVELOPMENT_IOS
         this.gameObject.AddComponent(typeof(SaveSystemiOS));
         saveSystem = GetComponent<SaveSystem>();
         applicationVersionText.text = "Platform Version: " + Application.platform + " Version: " + Application.version;
+        Screen.orientation = ScreenOrientation.Portrait;
 #elif RELEASE_IOS
         this.gameObject.AddComponent(typeof(SaveSystemiOS));
         saveSystem = GetComponent<SaveSystem>();
         Destroy(applicationVersionText.gameObject);
+        Screen.orientation = ScreenOrientation.Portrait;
 #elif UNITY_EDITOR
         this.gameObject.AddComponent(typeof(SaveSystemAndroid));
         saveSystem = GetComponent<SaveSystem>();
         applicationVersionText.text = "Platform Version: " + Application.platform + " Version: " + Application.version;
 #endif
-
     }
 }

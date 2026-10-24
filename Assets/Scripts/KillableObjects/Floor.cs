@@ -2,11 +2,22 @@ using UnityEngine;
 
 public class Floor : KillableObjects
 {
-    protected override void OnCollisionEnter2D(Collision2D collision)
+    [SerializeField] Transform playerPosition;
+    Rect safeArea;
+    Camera cam;
+    PlayerBehavior playerBehavior;
+    private void Start()
     {
-        if ((playerMask.value & (1 << collision.gameObject.layer)) != 0)
+        safeArea = new Rect(Screen.safeArea.x, Screen.safeArea.y, Screen.safeArea.width, Screen.safeArea.height);
+        cam = Camera.main;
+        playerBehavior = playerPosition.GetComponent<PlayerBehavior>();
+    }
+    private void Update()
+    {
+        Vector3 screenPos = cam.WorldToScreenPoint(playerPosition.position);
+        if (screenPos.y <= safeArea.yMin - 50f)
         {
-            KillPlayer(collision.gameObject.GetComponent<PlayerBehavior>());
+            KillPlayer(playerBehavior);
         }
     }
     public override void KillPlayer(PlayerBehavior player)
