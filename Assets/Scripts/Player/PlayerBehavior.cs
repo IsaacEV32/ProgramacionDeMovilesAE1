@@ -27,6 +27,10 @@ public class PlayerBehavior : MonoBehaviour
     {
         return rbPlayer;
     }
+    public bool GetHasPlayerDied()
+    {
+        return isDead;
+    }
     public void SetDeath(bool deathCondition)
     {
         isDead = deathCondition;

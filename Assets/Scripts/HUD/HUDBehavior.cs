@@ -6,13 +6,13 @@ public class HUDBehavior : MonoBehaviour
     int maxScore;
     void Start()
     {
+        score = 0;
         if (PlayerPrefs.GetInt("FIRSTTIMEOPENING", 1) == 1)
         {
             //Set first time opening to false
             PlayerPrefs.SetInt("FIRSTTIMEOPENING", 0);
 
-            score = 0;
-            maxScore = 5;
+            maxScore = 0;
         }
     }
     public int GetScore()
@@ -22,6 +22,10 @@ public class HUDBehavior : MonoBehaviour
     public int GetMaxScore()
     {
         return maxScore;
+    }
+    public void SetData(SaveSystemData _data)
+    {
+        maxScore = _data.maxScore;
     }
     public void SumScore(int points)
     {

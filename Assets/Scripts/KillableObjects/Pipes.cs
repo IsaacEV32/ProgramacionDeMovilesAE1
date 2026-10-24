@@ -12,5 +12,6 @@ public class Pipes : KillableObjects
     public override void KillPlayer(PlayerBehavior player)
     {
         player.SetDeath(true);
+        base.KillPlayer(player);
     }
 }

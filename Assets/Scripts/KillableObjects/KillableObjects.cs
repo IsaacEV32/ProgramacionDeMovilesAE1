@@ -9,7 +9,7 @@ public class KillableObjects : MonoBehaviour, IKillable
     }
     public virtual void KillPlayer(PlayerBehavior player)
     {
-        
+        GameManager.instance.GetComponent<SaveSystem>().Save();
     }
 }
 public interface IKillable

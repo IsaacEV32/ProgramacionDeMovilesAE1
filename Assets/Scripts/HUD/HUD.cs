@@ -22,7 +22,8 @@ public class HUD : MonoBehaviour
     }
     private void Start()
     {
-        UpdateScoreText(0);
+        UpdateScoreText(hudBehavior.GetScore());
+        UpdateMaxScoreText(hudBehavior.GetMaxScore());
     }
     public void UpdateScoreText(int _score)
     {
