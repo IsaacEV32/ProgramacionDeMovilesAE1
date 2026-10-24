@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    static SaveSystem saveSystem;
+    public SaveSystem saveSystem;
     [SerializeField] TMP_Text applicationVersionText;
     public static GameManager instance;
     private void Awake()
@@ -40,17 +40,5 @@ public class GameManager : MonoBehaviour
         applicationVersionText.text = "Platform Version: " + Application.platform + " Version: " + Application.version;
 #endif
 
-    }
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-    static void LoadContent()
-    {
-        if (SceneManager.GetActiveScene().buildIndex != 0)
-        {
-            if (saveSystem != null)
-            {
-                saveSystem.Load();
-                Debug.Log("Player successfully spawned");
-            }
-        }
     }
 }
