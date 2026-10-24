@@ -36,6 +36,7 @@ public class PlayerBehavior : MonoBehaviour
         isDead = deathCondition;
         rbPlayer.linearVelocity = Vector3.zero;
         StopCoroutine(MoveLoop());
+        rbPlayer.gameObject.GetComponent<PlayerInput>().enabled = false;
     }
     public void LaunchPlayer()
     {

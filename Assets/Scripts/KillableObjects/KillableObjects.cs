@@ -1,15 +1,13 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class KillableObjects : MonoBehaviour, IKillable
 {
     [SerializeField] protected LayerMask playerMask;
-    protected virtual void OnCollisionEnter2D(Collision2D collision)
-    {
-        
-    }
     public virtual void KillPlayer(PlayerBehavior player)
     {
         GameManager.instance.GetComponent<SaveSystem>().Save();
+        SceneManager.LoadScene(0);
     }
 }
 public interface IKillable

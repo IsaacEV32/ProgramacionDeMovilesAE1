@@ -14,6 +14,7 @@ public class HUDBehavior : MonoBehaviour
 
             maxScore = 0;
         }
+        GameManager.instance.saveSystem.Load();
     }
     public int GetScore()
     {

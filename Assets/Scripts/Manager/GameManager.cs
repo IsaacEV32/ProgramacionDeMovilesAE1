@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    static SaveSystem saveSystem;
+    public SaveSystem saveSystem;
     [SerializeField] TMP_Text applicationVersionText;
     public static GameManager instance;
     private void Awake()
@@ -22,35 +22,26 @@ public class GameManager : MonoBehaviour
         this.gameObject.AddComponent(typeof(SaveSystemAndroid));
         saveSystem = GetComponent<SaveSystem>();
         applicationVersionText.text = "Platform Version: " + Application.platform + " Version: " + Application.version;
+        Screen.orientation = ScreenOrientation.Portrait;
 #elif RELEASE_ANDROID
         this.gameObject.AddComponent(typeof(SaveSystemAndroid));
         saveSystem = GetComponent<SaveSystem>();
         Destroy(applicationVersionText.gameObject);
+        Screen.orientation = ScreenOrientation.Portrait;
 #elif DEVELOPMENT_IOS
         this.gameObject.AddComponent(typeof(SaveSystemiOS));
         saveSystem = GetComponent<SaveSystem>();
         applicationVersionText.text = "Platform Version: " + Application.platform + " Version: " + Application.version;
+        Screen.orientation = ScreenOrientation.Portrait;
 #elif RELEASE_IOS
         this.gameObject.AddComponent(typeof(SaveSystemiOS));
         saveSystem = GetComponent<SaveSystem>();
         Destroy(applicationVersionText.gameObject);
+        Screen.orientation = ScreenOrientation.Portrait;
 #elif UNITY_EDITOR
         this.gameObject.AddComponent(typeof(SaveSystemAndroid));
         saveSystem = GetComponent<SaveSystem>();
         applicationVersionText.text = "Platform Version: " + Application.platform + " Version: " + Application.version;
 #endif
-
-    }
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-    static void LoadContent()
-    {
-        if (SceneManager.GetActiveScene().buildIndex != 0)
-        {
-            if (saveSystem != null)
-            {
-                saveSystem.Load();
-                Debug.Log("Player successfully spawned");
-            }
-        }
     }
 }
