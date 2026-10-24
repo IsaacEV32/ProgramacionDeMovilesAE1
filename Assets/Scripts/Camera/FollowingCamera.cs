@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class FollowingCamera : MonoBehaviour
 {
-    public Transform target;
-    public Vector3 offset = new Vector3(-6, 0, -10);
-    public float smoothTime = 0.15f;
+    [SerializeField] Transform target;
+    [SerializeField] Vector3 offset;
+    [SerializeField] float smoothTime;
     private Vector3 velocity = Vector3.zero;
 
     void LateUpdate()

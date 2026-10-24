@@ -18,6 +18,10 @@ public class PlayerSprite : MonoBehaviour
     }
     IEnumerator RotationOfPlayer(Quaternion endValue, float duration)
     {
+        if (playerSprite.rotation == endValue)
+        {
+            yield return null;
+        }
         float time = 0;
         Quaternion startValue = playerSprite.rotation;
 
@@ -43,7 +47,7 @@ public class PlayerSprite : MonoBehaviour
                 targetRotation = new Vector3(0, 0, 20);
             }
             yield return StartCoroutine(RotationOfPlayer(Quaternion.Euler(targetRotation), 0.1f));
-       
+
         }
     }
 }

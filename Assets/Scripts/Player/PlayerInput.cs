@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,12 +10,16 @@ public class PlayerInput : MonoBehaviour
     {
         playerBehavior = GetComponent<PlayerBehavior>();
         playerSprite = GetComponent<PlayerSprite>();
+        
+    }
+    private void Start()
+    {
         playerSprite.GetPlayerTransform(playerTransform);
         playerSprite.SetPlayerVelocity(playerBehavior.GetRigidbody());
     }
     public void OnJump(InputAction.CallbackContext onJump)
     {
-        if (onJump.started)
+        if (onJump.started && !playerBehavior.GetHasPlayerDied())
         {
             playerBehavior.LaunchPlayer();
         }
