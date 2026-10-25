@@ -6,10 +6,10 @@ public class Pipes : KillableObjects
     {
         if ((playerMask.value & (1 << collision.gameObject.layer)) != 0)
         {
-            KillPlayer(collision.gameObject.GetComponent<PlayerBehavior>());
+            KillPlayer(collision.gameObject.GetComponent<PlayerInput>());
         }
     }
-    public override void KillPlayer(PlayerBehavior player)
+    public override void KillPlayer(PlayerInput player)
     {
         player.SetDeath(true);
         base.KillPlayer(player);

@@ -1,4 +1,5 @@
 using UnityEngine;
+
 public class InvokePauseMenu : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenuUI;
@@ -14,6 +15,15 @@ public class InvokePauseMenu : MonoBehaviour
         else
         {
             Destroy(this);
+        }
+    }
+    private void OnApplicationFocus(bool focus)
+    {
+        if (!focus && !pauseMenuUI.activeSelf)
+        {
+            Time.timeScale = 0f;
+            pauseMenuUI.SetActive(true);
+            isGamePaused = true;
         }
     }
     public bool IsGamePaused()

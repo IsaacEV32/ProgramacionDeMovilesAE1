@@ -11,18 +11,7 @@ public class PlayerBehavior : MonoBehaviour
     {
         rbPlayer = GetComponent<Rigidbody2D>();
     }
-    private void Start()
-    {
-        StartCoroutine(MoveLoop());
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if ((interactableMask.value & (1 << collision.gameObject.layer)) != 0)
-        {
-            collision.gameObject.GetComponent<IInteractablePoints>().Collect();
-            collision.gameObject.SetActive(false);
-        }
-    }
+    
     public Rigidbody2D GetRigidbody()
     {
         return rbPlayer;
@@ -31,24 +20,24 @@ public class PlayerBehavior : MonoBehaviour
     {
         return isDead;
     }
-    public void SetDeath(bool deathCondition)
+    public float GetJumpForce()
+    {
+        return jumpForce;
+    }
+    public float GetPlayerSpeed()
+    {
+        return speedPlayer;
+    }
+    public LayerMask GetInteractableMask()
+    {
+        return interactableMask;
+    }
+    public void SetDeathCondition(bool deathCondition)
     {
         isDead = deathCondition;
-        rbPlayer.linearVelocity = Vector3.zero;
-        StopCoroutine(MoveLoop());
-        rbPlayer.gameObject.GetComponent<PlayerInput>().enabled = false;
     }
-    public void LaunchPlayer()
+    public void SetPlayerVelocity(Vector3 playerVelocity)
     {
-        rbPlayer.linearVelocity = new Vector2(rbPlayer.linearVelocity.x, 0);
-        rbPlayer.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
-    }
-    IEnumerator MoveLoop()
-    {
-        while (!isDead)
-        {
-            rbPlayer.linearVelocity = new Vector2(speedPlayer * Time.fixedDeltaTime, rbPlayer.linearVelocity.y);
-            yield return null;
-        }
+        rbPlayer.linearVelocity = playerVelocity;
     }
 }

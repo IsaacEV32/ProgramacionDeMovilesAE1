@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class KillableObjects : MonoBehaviour, IKillable
 {
     [SerializeField] protected LayerMask playerMask;
-    public virtual void KillPlayer(PlayerBehavior player)
+    public virtual void KillPlayer(PlayerInput player)
     {
         GameManager.instance.GetComponent<SaveSystem>().Save();
         SceneManager.LoadScene(0);
@@ -12,5 +12,5 @@ public class KillableObjects : MonoBehaviour, IKillable
 }
 public interface IKillable
 {
-    void KillPlayer(PlayerBehavior player);
+    void KillPlayer(PlayerInput player);
 }
